@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.CommentBox {
+  border: solid 1px;
+  width: 200px;
+  margin: 20px;
+  padding: 10px;
+}
+
 ul {
   list-style-type: none;
 }

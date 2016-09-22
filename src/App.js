@@ -5,6 +5,35 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      commentBoxes: [],
+      commentBoxId: 0
+    };
+  }  
+  addNewCommentBox() {
+    let newCommentBoxId = this.state.commentBoxId + 1;
+    this.setState({commentBoxId: newCommentBoxId});
+    
+    let commentBox = <CommentBox key={this.state.commentBoxId}/>
+    this.setState({commentBoxes: this.state.commentBoxes.concat(commentBox)});
+  }  
+  render() {
+    return (
+      <div class="App">
+         {this.state.commentBoxes.map(function(commentBox) {
+           return commentBox;
+         })}
+        <button onClick={this.addNewCommentBox.bind(this)}>Add new commentbox</button>
+        
+      </div>
+    );
+  }
+}
+
+
+class CommentBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       comments: [],
       commentId: 0
     };
@@ -15,10 +44,10 @@ class App extends Component {
     
     let comment = {id:this.state.commentId, author: 'me', text: commentText}
     this.setState({comments: this.state.comments.concat(comment)});
-  }
+  }  
   render() {
     return (
-      <div className="App">
+      <div className="CommentBox">
         <CommentList comments={this.state.comments}/>
         <CommentInput onCommentSubmit={this.handleOnSubmit.bind(this)}/>
       </div>
@@ -26,7 +55,9 @@ class App extends Component {
   }
 }
 
+
 class CommentInput extends Component {
+  
   handleOnSubmit(e) {
     let commentText = this.textInput.value;
     if (commentText) {
