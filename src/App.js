@@ -18,17 +18,21 @@ class App extends Component {
   }  
   render() {
     return (
-      <div class="App">
-         {this.state.commentBoxes.map(function(commentBox) {
-           return commentBox;
-         })}
-        <button onClick={this.addNewCommentBox.bind(this)}>Add new commentbox</button>
+      <div className="App">
+        <div className="boxesSpace">
+           {this.state.commentBoxes.map(function(commentBox) {
+             return commentBox;
+           })}
+        </div>
+        <div className="buttonBar">
+          <button onClick={this.addNewCommentBox.bind(this)}>Add new commentbox</button>
+        </div>        
+
         
       </div>
     );
   }
 }
-
 
 class CommentBox extends Component {
   constructor(props) {
